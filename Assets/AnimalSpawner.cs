@@ -4,9 +4,14 @@ public class AnimalSpawner : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
     public GameObject currentAnimal;
-    public Transform spawnPoint;
+    [SerializeField] private GameManager gameManager;
 
-    void Update()
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
     {
         if (currentAnimal == null)
         {
@@ -14,10 +19,10 @@ public class AnimalSpawner : MonoBehaviour
         }
     }
 
-    void SpawnAnimal()
+    private void SpawnAnimal()
     {
         int randomIndex = Random.Range(0, animalPrefabs.Length);
-        currentAnimal = Instantiate(animalPrefabs[randomIndex], spawnPoint.position, Quaternion.identity);
+        currentAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint, Quaternion.identity);
     }
 }
 

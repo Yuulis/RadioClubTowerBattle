@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public Camera mainCamera;
     public Text scoreText;
-    public Transform spawnPoint;
+    [HideInInspector] public Vector2 spawnPoint = new(0f, 10f);
     private float highestPoint = 0f;
     private float maxHeightReached = 0f;
 
@@ -62,15 +62,6 @@ public class GameManager : MonoBehaviour
     void AdjustSpawnPoint()
     {
         spawnOffset = Random.Range(3f,5f);
-
-        Vector3 newSpawnPosition = new Vector3(
-            spawnPoint.position.x,            
-            maxHeightReached + spawnOffset, 
-            spawnPoint.position.z           
-        );
-
-        spawnPoint.position = newSpawnPosition;
+        spawnPoint.y = maxHeightReached + spawnOffset;
     }
-
-
 }
