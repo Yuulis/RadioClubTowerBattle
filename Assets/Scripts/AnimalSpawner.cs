@@ -3,7 +3,7 @@ using UnityEngine;
 public class AnimalSpawner : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
-    public GameObject currentAnimal;
+    [HideInInspector] public GameObject currentAnimal;
     [SerializeField] private GameManager gameManager;
 
     private void Start()

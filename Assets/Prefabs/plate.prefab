@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 770095831845434059}
   - component: {fileID: -7265496260200346873}
   m_Layer: 0
-  m_Name: "\u57FA\u76E4-removebg-preview"
+  m_Name: plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

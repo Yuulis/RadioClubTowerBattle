@@ -308,11 +308,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e57ac4bc494082f4d937d349d3345fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
   scoreText: {fileID: 1475274061}
   spawnPoint: {x: 0, y: 10}
-  cameraOffset: 10
-  spawnOffset: 5
 --- !u!4 &360780914
 Transform:
   m_ObjectHideFlags: 0
@@ -431,7 +428,7 @@ GameObject:
   - component: {fileID: 611194203}
   - component: {fileID: 611194202}
   m_Layer: 0
-  m_Name: AnimalSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

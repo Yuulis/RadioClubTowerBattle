@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4540886002559026499}
   - component: {fileID: 6299705589003821224}
   m_Layer: 0
-  m_Name: "\u30B3\u30F3\u30C7\u30F3\u30B5\u30FC-removebg-preview"
+  m_Name: capacitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

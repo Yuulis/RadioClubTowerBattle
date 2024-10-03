@@ -7,18 +7,18 @@ public class AnimalController : MonoBehaviour
     private Rigidbody2D rb;
     public float moveSpeed = 10f;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
-    void Update()
+    private void Update()
     {
         if (!isReleased)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(mousePosition.x, transform.position.y, 0);
+            this.transform.position = new Vector3(mousePosition.x, this.transform.position.y, 0f);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -27,7 +27,7 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    void ReleaseAnimal()
+    private void ReleaseAnimal()
     {
         isReleased = true;
         rb.bodyType = RigidbodyType2D.Dynamic;

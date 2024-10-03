@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6166481600161721441}
   - component: {fileID: 6392888372607155806}
   m_Layer: 0
-  m_Name: "\u30C9\u30ED\u30FC\u30F3-removebg-preview 1"
+  m_Name: drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
