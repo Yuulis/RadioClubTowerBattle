@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 53188893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -0.07833488}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -446,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 611194201}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -0.07833488}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1004,7 +1005,7 @@ GameObject:
   - component: {fileID: 1745471779}
   - component: {fileID: 1745471780}
   m_Layer: 0
-  m_Name: GameoverLine
+  m_Name: GameOverLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1372,11 +1373,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 690642738}
+  - {fileID: 1868672147}
+  - {fileID: 1681762276}
   - {fileID: 1899238710}
   - {fileID: 1745471778}
   - {fileID: 611194203}
   - {fileID: 53188894}
-  - {fileID: 1868672147}
-  - {fileID: 690642738}
-  - {fileID: 1681762276}
   - {fileID: 1028780557}
