@@ -452,7 +452,7 @@ MonoBehaviour:
   - {fileID: 7085444988780966204, guid: 9c15ba3b091345b46b04e6abf069bd1b, type: 3}
   - {fileID: 4895786992487861778, guid: 9b8468964c5f75540a7000c1dd0cf777, type: 3}
   currentAnimal: {fileID: 0}
-  gameManager: {fileID: 360780913}
+  gameManagerObj: {fileID: 360780912}
 --- !u!4 &611194203
 Transform:
   m_ObjectHideFlags: 0

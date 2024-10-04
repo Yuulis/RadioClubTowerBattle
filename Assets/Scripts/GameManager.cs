@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private float cameraOffset = 10.0f;
     private float spawnOffset = 5.0f;
 
-    private void Start()
+    void Start()
     {
         UpdateScoreText();
     }

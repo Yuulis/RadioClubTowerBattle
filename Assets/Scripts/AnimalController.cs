@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +8,13 @@ public class AnimalController : MonoBehaviour
     private Rigidbody2D rb;
     public float moveSpeed = 10f;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
-    private void Update()
+    void Update()
     {
         if (!isReleased)
         {
@@ -37,7 +38,7 @@ public class AnimalController : MonoBehaviour
     {
         if (isReleased)
         {
-            float height = transform.position.y;
+            float height = this.transform.position.y;
 
             FindObjectOfType<GameManager>().AddScoreAndAdjustCamera(height);
 

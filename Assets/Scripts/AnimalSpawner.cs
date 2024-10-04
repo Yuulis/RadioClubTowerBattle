@@ -3,15 +3,17 @@ using UnityEngine;
 public class AnimalSpawner : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
-    [HideInInspector] public GameObject currentAnimal;
-    [SerializeField] private GameManager gameManager;
+    public GameObject currentAnimal;
+    [SerializeField] private GameObject gameManagerObj;
 
-    private void Start()
+    private GameManager gameManager;
+
+    void Start()
     {
-        
+        gameManager = gameManagerObj.GetComponent<GameManager>();
     }
 
-    private void Update()
+    void Update()
     {
         if (currentAnimal == null)
         {
