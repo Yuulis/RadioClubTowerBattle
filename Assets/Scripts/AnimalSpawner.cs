@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimalSpawner : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class AnimalSpawner : MonoBehaviour
     private void SpawnAnimal()
     {
         int randomIndex = Random.Range(0, animalPrefabs.Length);
-        currentAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint, Quaternion.identity);
+        currentAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint.position, Quaternion.identity);
     }
 }
 

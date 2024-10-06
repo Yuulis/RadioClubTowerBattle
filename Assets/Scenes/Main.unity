@@ -281,7 +281,7 @@ MonoBehaviour:
   - {fileID: 7085444988780966204, guid: 9c15ba3b091345b46b04e6abf069bd1b, type: 3}
   - {fileID: 4895786992487861778, guid: 9b8468964c5f75540a7000c1dd0cf777, type: 3}
   currentAnimal: {fileID: 0}
-  spawnPoint: {fileID: 53188894}
+  gameManagerObj: {fileID: 1681762275}
 --- !u!4 &611194203
 Transform:
   m_ObjectHideFlags: 0
@@ -583,8 +583,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1681762276}
-  - component: {fileID: 1681762277}
   - component: {fileID: 1681762279}
+  - component: {fileID: 1681762280}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -611,23 +611,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1681762277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681762275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e57ac4bc494082f4d937d349d3345fce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420031}
-  scoreText: {fileID: 1475274061}
-  spawnPoint: {fileID: 53188894}
-  cameraOffset: 5
-  spawnOffset: 3
 --- !u!222 &1681762279
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -636,6 +619,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681762275}
   m_CullTransparentMesh: 1
+--- !u!114 &1681762280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681762275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd75e2373c19ec4bbee025820d8e30e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  scoreText: {fileID: 1475274061}
+  spawnPoint: {fileID: 53188894}
+  cameraOffset: 10
+  spawnOffset: 5
 --- !u!1 &1745471775
 GameObject:
   m_ObjectHideFlags: 0
