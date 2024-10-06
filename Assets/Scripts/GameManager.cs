@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     void AdjustSpawnPoint()
     {
-        spawnOffset = Random.Range(3f, 5f);
+        spawnOffset = Random.Range(2f, 5f);
 
         Vector3 newSpawnPosition = new Vector3(
             spawnPoint.position.x,
