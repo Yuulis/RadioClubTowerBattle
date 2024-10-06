@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public float cameraOffset = 10f;
     public float spawnOffset = 5f;
+
+    private bool isGameOver = false;
 
     void Start()
     {
@@ -47,26 +50,26 @@ public class GameManager : MonoBehaviour
     void AdjustCameraPosition()
     {
         Vector3 targetPosition = new Vector3(
-            mainCamera.transform.position.x, 
-            highestPoint + cameraOffset,   
-            mainCamera.transform.position.z  
+            mainCamera.transform.position.x,
+            highestPoint + cameraOffset,
+            mainCamera.transform.position.z
         );
 
         mainCamera.transform.position = Vector3.Lerp(
-            mainCamera.transform.position,   
-            targetPosition,               
-            Time.deltaTime * 2f         
+            mainCamera.transform.position,
+            targetPosition,
+            Time.deltaTime * 2f
         );
     }
 
     void AdjustSpawnPoint()
     {
-        spawnOffset = Random.Range(3f,5f);
+        spawnOffset = Random.Range(3f, 5f);
 
         Vector3 newSpawnPosition = new Vector3(
-            spawnPoint.position.x,            
-            maxHeightReached + spawnOffset, 
-            spawnPoint.position.z           
+            spawnPoint.position.x,
+            maxHeightReached + spawnOffset,
+            spawnPoint.position.z
         );
 
         spawnPoint.position = newSpawnPosition;
