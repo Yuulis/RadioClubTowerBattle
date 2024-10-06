@@ -1,18 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public Camera mainCamera;
     public Text scoreText;
-    [HideInInspector] public Vector2 spawnPoint = new(0.0f, 10.0f);
+    public Transform spawnPoint;
     private float highestPoint = 0f;
     private float maxHeightReached = 0f;
 
-    private float cameraOffset = 10.0f;
-    private float spawnOffset = 5.0f;
+    public float cameraOffset = 10f;
+    public float spawnOffset = 5f;
+
+    private bool isGameOver = false;
 
     void Start()
     {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+
         UpdateScoreText();
     }
 
@@ -33,24 +42,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UpdateScoreText()
+    void UpdateScoreText()
     {
         scoreText.text = "Score: " + Mathf.RoundToInt(maxHeightReached);
     }
 
-    private void AdjustCameraPosition()
+    void AdjustCameraPosition()
     {
-        Vector3 cameraPosition = new(Camera.main.transform.position.x, highestPoint + cameraOffset, Camera.main.transform.position.z);
-        Camera.main.transform.position = Vector3.Lerp(
-            Camera.main.transform.position,
-            cameraPosition,
+        Vector3 targetPosition = new Vector3(
+            mainCamera.transform.position.x,
+            highestPoint + cameraOffset,
+            mainCamera.transform.position.z
+        );
+
+        mainCamera.transform.position = Vector3.Lerp(
+            mainCamera.transform.position,
+            targetPosition,
             Time.deltaTime * 2f
         );
     }
 
-    private void AdjustSpawnPoint()
+    void AdjustSpawnPoint()
     {
         spawnOffset = Random.Range(3f, 5f);
-        spawnPoint.y = maxHeightReached + spawnOffset;
+
+        Vector3 newSpawnPosition = new Vector3(
+            spawnPoint.position.x,
+            maxHeightReached + spawnOffset,
+            spawnPoint.position.z
+        );
+
+        spawnPoint.position = newSpawnPosition;
     }
+
+
 }
