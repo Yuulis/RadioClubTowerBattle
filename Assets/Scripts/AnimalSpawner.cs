@@ -6,7 +6,6 @@ public class AnimalSpawner : MonoBehaviour
     public GameObject[] animalPrefabs;
     public GameObject currentAnimal;
     [SerializeField] private GameObject gameManagerObj;
-
     private GameManager gameManager;
 
     void Start()
