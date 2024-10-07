@@ -7,6 +7,7 @@ public class AnimalSpawner : MonoBehaviour
     public GameObject currentAnimal;
     [SerializeField] private GameObject gameManagerObj;
     private GameManager gameManager;
+    private bool canSpawn = true;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class AnimalSpawner : MonoBehaviour
 
     void Update()
     {
-        if (currentAnimal == null)
+        if (canSpawn)
         {
             SpawnAnimal();
         }
@@ -24,7 +25,19 @@ public class AnimalSpawner : MonoBehaviour
     private void SpawnAnimal()
     {
         int randomIndex = Random.Range(0, animalPrefabs.Length);
-        currentAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint.position, Quaternion.identity);
+        GameObject newAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint.position, Quaternion.identity);
+
+        gameManager.AddAnimalToList(newAnimal);
+        gameManager.currentAnimal = newAnimal;
+
+        canSpawn = false;
+
+        Invoke("EnableAnimalSpawn", 2f);
+    }
+
+    private void EnableAnimalSpawn()
+    {
+        canSpawn = true;
     }
 }
 
