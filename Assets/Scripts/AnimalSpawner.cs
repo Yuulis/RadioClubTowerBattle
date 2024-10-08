@@ -46,13 +46,8 @@ public class AnimalSpawner : MonoBehaviour
 
         canSpawn = false;
 
-        Invoke("EnableAnimalSpawn", 2f);
 
     }
 
-    private void EnableAnimalSpawn()
-    {
-        canSpawn = true;
-    }
 }
 
