@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class GameManager : MonoBehaviour
 
     public float cameraOffset = 10f;
     public float spawnOffset = 5f;
+    public float minAllowedHeight = -5f;
 
     private bool isGameOver = false;
+    public List<GameObject> animals = new List<GameObject>();
+    public GameObject currentAnimal;
 
     void Start()
     {
@@ -24,6 +28,13 @@ public class GameManager : MonoBehaviour
 
         UpdateScoreText();
     }
+
+    public void AddAnimalToList(GameObject animal)
+    {
+        animals.Add(animal);
+        currentAnimal = animal;
+    }
+
 
     public void AddScoreAndAdjustCamera(float height)
     {
@@ -73,6 +84,32 @@ public class GameManager : MonoBehaviour
         );
 
         spawnPoint.position = newSpawnPosition;
+    }
+
+    void Update()
+    {
+        if (!isGameOver && IsGameOverConditionMet())
+        {
+            TriggerGameOver();
+        }
+    }
+
+    bool IsGameOverConditionMet()
+    {
+        foreach (GameObject animal in animals)
+        {
+            if (animal != null && animal.transform.position.y < minAllowedHeight)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void TriggerGameOver()
+    {
+        isGameOver = true;
+        SceneManager.LoadScene("Scenes/GameOver");
     }
 
 
