@@ -6,8 +6,10 @@ public class AnimalSpawner : MonoBehaviour
     public GameObject[] animalPrefabs;
     public GameObject currentAnimal;
     [SerializeField] private GameObject gameManagerObj;
-
     private GameManager gameManager;
+    private bool canSpawn = true;
+    private float stopThreshold = 0.1f;
+    private Rigidbody currentAnimalRb;
 
     void Start()
     {
@@ -16,7 +18,19 @@ public class AnimalSpawner : MonoBehaviour
 
     void Update()
     {
-        if (currentAnimal == null)
+        if (gameManager.currentAnimal != null)
+        {
+            currentAnimalRb = gameManager.currentAnimal.GetComponent<Rigidbody>();
+
+            if (currentAnimalRb != null && currentAnimalRb.velocity.magnitude < stopThreshold)
+            {
+                Destroy(gameManager.currentAnimal);
+                gameManager.currentAnimal = null;
+                canSpawn = true;
+            }
+        }
+
+        if (canSpawn)
         {
             SpawnAnimal();
         }
@@ -25,7 +39,21 @@ public class AnimalSpawner : MonoBehaviour
     private void SpawnAnimal()
     {
         int randomIndex = Random.Range(0, animalPrefabs.Length);
-        currentAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint.position, Quaternion.identity);
+        GameObject newAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint.position, Quaternion.identity);
+
+        gameManager.AddAnimalToList(newAnimal);
+        gameManager.currentAnimal = newAnimal;
+
+        canSpawn = false;
+
+        Invoke("EnableAnimalSpawn", 3f);
     }
+
+    private void EnableAnimalSpawn()
+    {
+        canSpawn = true;
+    }
+
+
 }
 
