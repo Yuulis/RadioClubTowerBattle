@@ -21,6 +21,8 @@ public class AnimalController : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             this.transform.position = new Vector3(mousePosition.x, this.transform.position.y, 0f);
 
+            this.transform.Rotate(0, 0, Input.GetAxis("Horizontal") * 100f * Time.deltaTime);
+
             if (Input.GetMouseButtonDown(0))
             {
                 ReleaseAnimal();
