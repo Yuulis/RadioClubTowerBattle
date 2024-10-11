@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public float spawnOffset = 5f;
     public float minAllowedHeight = -5f;
 
-    private bool isGameOver = false;
+    public bool isGameOver = false;
     public List<GameObject> animals = new List<GameObject>();
     public GameObject currentAnimal;
 
@@ -88,29 +88,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!isGameOver && IsGameOverConditionMet())
-        {
-            TriggerGameOver();
-        }
+        
     }
-
-    bool IsGameOverConditionMet()
-    {
-        foreach (GameObject animal in animals)
-        {
-            if (animal != null && animal.transform.position.y < minAllowedHeight)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    void TriggerGameOver()
-    {
-        isGameOver = true;
-        SceneManager.LoadScene("Scenes/GameOver");
-    }
-
-
 }
