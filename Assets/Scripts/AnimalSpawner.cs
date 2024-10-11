@@ -9,7 +9,7 @@ public class AnimalSpawner : MonoBehaviour
     private GameManager gameManager;
     private bool canSpawn = true;
     private float stopThreshold = 0.1f;
-    private Rigidbody currentAnimalRb;
+    private Rigidbody2D currentAnimalRb2D;
 
     void Start()
     {
@@ -20,9 +20,9 @@ public class AnimalSpawner : MonoBehaviour
     {
         if (gameManager.currentAnimal != null)
         {
-            currentAnimalRb = gameManager.currentAnimal.GetComponent<Rigidbody>();
+            currentAnimalRb2D = gameManager.currentAnimal.GetComponent<Rigidbody2D>();
 
-            if (currentAnimalRb != null && currentAnimalRb.velocity.magnitude < stopThreshold)
+            if (currentAnimalRb2D != null && currentAnimalRb2D.velocity.magnitude < stopThreshold)
             {
                 Destroy(gameManager.currentAnimal);
                 gameManager.currentAnimal = null;
@@ -46,7 +46,7 @@ public class AnimalSpawner : MonoBehaviour
 
         canSpawn = false;
 
-        Invoke("EnableAnimalSpawn", 3f);
+       //  Invoke("EnableAnimalSpawn", 3f);
     }
 
     private void EnableAnimalSpawn()
