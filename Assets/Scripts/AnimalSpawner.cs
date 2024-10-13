@@ -3,57 +3,37 @@ using UnityEngine.UI;
 
 public class AnimalSpawner : MonoBehaviour
 {
-    public GameObject[] animalPrefabs;
-    public GameObject currentAnimal;
-    [SerializeField] private GameObject gameManagerObj;
-    private GameManager gameManager;
-    private bool canSpawn = true;
-    private float stopThreshold = 0.1f;
-    private Rigidbody currentAnimalRb;
+    [HideInInspector] public bool canSpawn = true;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private AnimalController[] spawnObjects;
 
     void Start()
     {
-        gameManager = gameManagerObj.GetComponent<GameManager>();
+        
     }
 
     void Update()
     {
-        if (gameManager.currentAnimal != null)
+        if (gameManager.currentObjState == 2)
         {
-            currentAnimalRb = gameManager.currentAnimal.GetComponent<Rigidbody>();
-
-            if (currentAnimalRb != null && currentAnimalRb.velocity.magnitude < stopThreshold)
-            {
-                Destroy(gameManager.currentAnimal);
-                gameManager.currentAnimal = null;
-                canSpawn = true;
-            }
+            canSpawn = true;
         }
 
         if (canSpawn)
         {
-            SpawnAnimal();
+            SpawnObject();
         }
     }
 
-    private void SpawnAnimal()
+    private void SpawnObject()
     {
-        int randomIndex = Random.Range(0, animalPrefabs.Length);
-        GameObject newAnimal = Instantiate(animalPrefabs[randomIndex], gameManager.spawnPoint.position, Quaternion.identity);
-
-        gameManager.AddAnimalToList(newAnimal);
-        gameManager.currentAnimal = newAnimal;
-
         canSpawn = false;
 
-        Invoke("EnableAnimalSpawn", 3f);
+        int idx = Random.Range(0, spawnObjects.Length);
+        AnimalController nextObj = Instantiate(spawnObjects[idx], gameManager.spawnPoint.position, Quaternion.identity);
+        nextObj.SetGameManager(gameManager);
+
+        gameManager.currentObjState = 0;
     }
-
-    private void EnableAnimalSpawn()
-    {
-        canSpawn = true;
-    }
-
-
 }
 

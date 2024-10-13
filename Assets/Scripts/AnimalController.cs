@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class AnimalController : MonoBehaviour
 {
-    private bool isReleased = false;
-    private Rigidbody2D rb;
     public float moveSpeed = 10f;
+    private GameManager gameManager;
+    private Rigidbody2D rb;
+    private bool isReleased = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = this.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
     }
 
@@ -18,9 +19,7 @@ public class AnimalController : MonoBehaviour
     {
         if (!isReleased)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            this.transform.position = new Vector3(mousePosition.x, this.transform.position.y, 0f);
-
+            this.transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, this.transform.position.y, 0f);
             this.transform.Rotate(0, 0, Input.GetAxis("Horizontal") * 100f * Time.deltaTime);
 
             if (Input.GetMouseButtonDown(0))
@@ -30,23 +29,25 @@ public class AnimalController : MonoBehaviour
         }
     }
 
+    public void SetGameManager(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
+
     private void ReleaseAnimal()
     {
         isReleased = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
+        gameManager.currentObjState = 1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isReleased)
         {
+            gameManager.currentObjState = 2;
             float height = this.transform.position.y;
-
-            FindObjectOfType<GameManager>().AddScoreAndAdjustCamera(height);
-
-            FindObjectOfType<AnimalSpawner>().currentAnimal = null;
-
-            Destroy(this);
+            gameManager.AddScoreAndAdjustCamera(height);
         }
     }
 

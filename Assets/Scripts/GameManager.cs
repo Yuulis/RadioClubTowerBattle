@@ -8,19 +8,27 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public Text scoreText;
     public Transform spawnPoint;
-    private float highestPoint = 0f;
-    private float maxHeightReached = 0f;
-
     public float cameraOffset = 10f;
     public float spawnOffset = 5f;
     public float minAllowedHeight = -5f;
 
-    public bool isGameOver = false;
-    public List<GameObject> animals = new List<GameObject>();
-    public GameObject currentAnimal;
+    /*
+     * currentObjState
+     * -1: No object is spawned
+     * 0 : Object is spawned but not released
+     * 1 : Object is released and falling
+     * 2 : Object has landed or touched GameOverLine     
+     */
+    public int currentObjState;
+
+    [HideInInspector] public bool isGameOver = false;
+    private float highestPoint = 0f;
+    private float maxHeightReached = 0f;
 
     void Start()
     {
+        currentObjState = -1;
+
         if (mainCamera == null)
         {
             mainCamera = Camera.main;
@@ -29,12 +37,10 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
     }
 
-    public void AddAnimalToList(GameObject animal)
+    void Update()
     {
-        animals.Add(animal);
-        currentAnimal = animal;
-    }
 
+    }
 
     public void AddScoreAndAdjustCamera(float height)
     {
@@ -84,10 +90,5 @@ public class GameManager : MonoBehaviour
         );
 
         spawnPoint.position = newSpawnPosition;
-    }
-
-    void Update()
-    {
-        
     }
 }
