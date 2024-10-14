@@ -13,6 +13,7 @@ public class AnimalController : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Kinematic;
+        gameManager.currentObjState = 0;
     }
 
     void Update()
@@ -37,17 +38,18 @@ public class AnimalController : MonoBehaviour
     private void ReleaseAnimal()
     {
         isReleased = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;
         gameManager.currentObjState = 1;
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isReleased)
+        if (collision.gameObject.tag == "Bar" || collision.gameObject.tag == "GameoverLine")
         {
             gameManager.currentObjState = 2;
             float height = this.transform.position.y;
             gameManager.AddScoreAndAdjustCamera(height);
+            gameManager.currentObjOfController = null;
         }
     }
 

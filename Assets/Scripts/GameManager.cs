@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System;
+using System.Collections;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,13 +17,14 @@ public class GameManager : MonoBehaviour
 
     /*
      * currentObjState
-     * -1: No object is spawned
+     * -1: No object is spawned                      -> spwanable
      * 0 : Object is spawned but not released
      * 1 : Object is released and falling
-     * 2 : Object has landed or touched GameOverLine     
+     * 2 : Object has landed or touched GameOverLine -> spawnable    
      */
     public int currentObjState;
 
+    public AnimalController currentObjOfController;
     [HideInInspector] public bool isGameOver = false;
     private float highestPoint = 0f;
     private float maxHeightReached = 0f;
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentObjState = -1;
+        currentObjOfController = null;
 
         if (mainCamera == null)
         {
@@ -37,9 +42,12 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
+        if (currentObjOfController == null)
+        {
+            
+        }
     }
 
     public void AddScoreAndAdjustCamera(float height)
@@ -90,5 +98,15 @@ public class GameManager : MonoBehaviour
         );
 
         spawnPoint.position = newSpawnPosition;
+    }
+
+    private IEnumerator DelayCoroutine(int delayFrame, Action action)
+    {
+        for (int i = 0; i < delayFrame; i++)
+        {
+            yield return null;
+        }
+
+        action?.Invoke();
     }
 }
