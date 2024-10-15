@@ -1,18 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FallingObjectSpawner : MonoBehaviour
 {
-	[SerializeField] private FallingObject fallingObject;
+	[SerializeField] private List<FallingObject> fallingObjects;
+	[SerializeField] float movableWidth = 15.0f;
+	[SerializeField] float followStrength = 0.1f;
 
-	void Start()
+    void Start()
 	{
 
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mousePos.x = Mathf.Clamp(mousePos.x, -movableWidth, movableWidth);
+        this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(mousePos.x, this.transform.position.y, this.transform.position.z), followStrength);
+
+        if (Input.GetKeyDown(KeyCode.Space))
 		{
 			SpawnObject();
 		}
@@ -20,7 +27,8 @@ public class FallingObjectSpawner : MonoBehaviour
 
 	private void SpawnObject()
 	{
-		Instantiate(fallingObject, transform.position, Quaternion.identity);
+		FallingObject obj = fallingObjects[Random.Range(0, fallingObjects.Count)];
+        Instantiate(obj, transform.position, Quaternion.identity);
 	}
 }
 

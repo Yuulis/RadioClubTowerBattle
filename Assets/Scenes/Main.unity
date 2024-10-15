@@ -441,7 +441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4bd827b6a27da45aaf6bafaeb481fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingObject: {fileID: 6446192269844364341, guid: 9b8468964c5f75540a7000c1dd0cf777, type: 3}
+  fallingObjects:
+  - {fileID: 6446192269844364341, guid: 9b8468964c5f75540a7000c1dd0cf777, type: 3}
+  - {fileID: 2901926192637338021, guid: 391927094afec5549bb93f7d8710a34e, type: 3}
+  - {fileID: 5449010146904684625, guid: c4e9a93ae340921458bfef5480a2f33d, type: 3}
+  - {fileID: 2476809575869882880, guid: 8d2d788b69f5639419407fd521ba277b, type: 3}
+  movableWidth: 15
+  followStrength: 0.1
 --- !u!1 &1745471775
 GameObject:
   m_ObjectHideFlags: 0
