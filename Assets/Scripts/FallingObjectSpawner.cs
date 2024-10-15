@@ -1,34 +1,43 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FallingObjectSpawner : MonoBehaviour
 {
 	[SerializeField] private List<FallingObject> fallingObjects;
-	[SerializeField] float movableWidth = 15.0f;
-	[SerializeField] float followStrength = 0.1f;
+	[SerializeField] private float movableWidth = 15.0f;
+	[SerializeField] private float followStrength = 0.1f;
+	[SerializeField] private float coolTime = 1.0f;
+	private FallingObject nextObj;
 
-    void Start()
+    private void Start()
 	{
+		StartCoroutine(HandleObject(coolTime));
+    }
 
-	}
-
-	void Update()
+	private void Update()
 	{
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.x = Mathf.Clamp(mousePos.x, -movableWidth, movableWidth);
         this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(mousePos.x, this.transform.position.y, this.transform.position.z), followStrength);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0) && nextObj != null)
 		{
-			SpawnObject();
-		}
+			nextObj.GetComponent<Rigidbody2D>().isKinematic = false;
+			nextObj.transform.SetParent(null);
+            nextObj = null;
+
+            StartCoroutine(HandleObject(coolTime));
+        }
 	}
 
-	private void SpawnObject()
+	private IEnumerator HandleObject(float delay)
 	{
-		FallingObject obj = fallingObjects[Random.Range(0, fallingObjects.Count)];
-        Instantiate(obj, transform.position, Quaternion.identity);
-	}
+        yield return new WaitForSeconds(delay);
+
+        FallingObject obj = fallingObjects[Random.Range(0, fallingObjects.Count)];
+        nextObj = Instantiate(obj, transform.position, Quaternion.identity);
+		nextObj.transform.SetParent(this.transform);
+    }
 }
 
