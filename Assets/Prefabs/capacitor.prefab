@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 5110654607962014845}
   - component: {fileID: 6446192269844364341}
   m_Layer: 0
-  m_Name: Capacitor
-  m_TagString: Untagged
+  m_Name: capacitor
+  m_TagString: FallingObjects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -19,8 +19,10 @@ public class GameOverChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameManager.isGameOver = true;
-        gameManager.currentObjState = -1;
-        SceneManager.LoadScene("Scenes/GameOver");
+        if (collision.gameObject.tag == "FallingObjects")
+        {
+            gameManager.isGameOver = true;
+            SceneManager.LoadScene("Scenes/GameOver");
+        }
     }
 }
