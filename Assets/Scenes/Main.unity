@@ -443,10 +443,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallingObjects:
+  - {fileID: 3763673214743108093, guid: 155c294c68049b142bea874785f57d88, type: 3}
+  - {fileID: 6296616580790643408, guid: fc713ec9bfadbb74c998d18460bd599c, type: 3}
+  - {fileID: 4413447867146778233, guid: 4c0e2201ed0960f4c8514638bd7cdfea, type: 3}
   - {fileID: 6446192269844364341, guid: 9b8468964c5f75540a7000c1dd0cf777, type: 3}
+  - {fileID: 662140994113801967, guid: c2db3ae38ba626142aea2ede1c2146b9, type: 3}
   - {fileID: 2901926192637338021, guid: 391927094afec5549bb93f7d8710a34e, type: 3}
+  - {fileID: 5007609379713948667, guid: eaa8c040d955e4f4c9539803c45f9983, type: 3}
+  - {fileID: 2671965091473261706, guid: 339f77e69aabf2744ab5a2665ccee015, type: 3}
+  - {fileID: 4315667619983395584, guid: e585c208948cca140ac4f30c179b631e, type: 3}
   - {fileID: 5449010146904684625, guid: c4e9a93ae340921458bfef5480a2f33d, type: 3}
   - {fileID: 2476809575869882880, guid: 8d2d788b69f5639419407fd521ba277b, type: 3}
+  - {fileID: 4637620508693855904, guid: 66ad6da687220324d8c79dd3436cbcf8, type: 3}
   movableWidth: 15
   followStrength: 0.1
   coolTime: 1
