@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FallingObjectSpawner : MonoBehaviour
 {
-	[SerializeField] private List<FallingObject> fallingObjects;
+	[SerializeField] private PlayerManager playerManager;
+    [SerializeField] private List<FallingObject> fallingObjects;
 	[SerializeField] private float movableWidth = 15.0f;
 	[SerializeField] private float followStrength = 0.1f;
 	[SerializeField] private float coolTime = 1.0f;
@@ -38,6 +39,7 @@ public class FallingObjectSpawner : MonoBehaviour
         FallingObject obj = fallingObjects[Random.Range(0, fallingObjects.Count)];
         nextObj = Instantiate(obj, transform.position, Quaternion.identity);
 		nextObj.transform.SetParent(this.transform);
+        nextObj.SetPlayerManager(this.playerManager);
     }
 }
 

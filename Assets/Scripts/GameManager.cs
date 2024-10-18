@@ -8,20 +8,14 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    public Text scoreText;
     [HideInInspector] public bool isGameOver = false;
 
-    void Start()
+    private void Start()
     {
-        UpdateScoreText();
+
     }
 
-    void Update()
-    {
-        
-    }
-
-    void UpdateScoreText()
+    private void Update()
     {
         
     }

@@ -23,6 +23,8 @@ public enum ObjectType
 public class FallingObject : MonoBehaviour
 {
     public ObjectType objectType;
+    private PlayerManager playerManager;
+    private bool falled = false;
 
     void Start()
     {
@@ -34,11 +36,17 @@ public class FallingObject : MonoBehaviour
         
     }
 
+    public void SetPlayerManager(PlayerManager playerManager)
+    {
+        this.playerManager = playerManager;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bar" || collision.gameObject.tag == "GameoverLine")
+        if ((collision.gameObject.tag == "Bar" || collision.gameObject.tag == "FallingObjects") && !falled)
         {
-            // Debug.Log("Hit");
+            falled = true;
+            playerManager.score++;
         }
     }
 }
