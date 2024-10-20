@@ -7,13 +7,14 @@ public class FallingObjectSpawner : MonoBehaviour
 	[SerializeField] private PlayerManager playerManager;
     [SerializeField] private List<FallingObject> fallingObjects;
 	[SerializeField] private float movableWidth = 15.0f;
-	[SerializeField] private float followStrength = 0.1f;
+	[SerializeField] private float rotateSpeed = 10.0f;
+    [SerializeField] private float followStrength = 0.1f;
 	[SerializeField] private float coolTime = 1.0f;
 	private FallingObject nextObj;
 
     private void Start()
 	{
-		StartCoroutine(HandleObject(coolTime));
+		StartCoroutine(HandleObject(0.1f));
     }
 
 	private void Update()
@@ -21,6 +22,11 @@ public class FallingObjectSpawner : MonoBehaviour
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos.x = Mathf.Clamp(mousePos.x, -movableWidth, movableWidth);
         this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(mousePos.x, this.transform.position.y, this.transform.position.z), followStrength);
+
+		if (nextObj != null)
+		{
+            nextObj.transform.Rotate(new Vector3(0f, 0f, Input.GetAxis("Horizontal") * rotateSpeed));
+		}
 
         if (Input.GetMouseButtonDown(0) && nextObj != null)
 		{
