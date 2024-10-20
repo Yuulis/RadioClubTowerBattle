@@ -47,6 +47,7 @@ public class FallingObject : MonoBehaviour
         {
             falled = true;
             playerManager.score++;
+            playerManager.UpdateMaxHeight(this.transform.position.y);
         }
     }
 }
