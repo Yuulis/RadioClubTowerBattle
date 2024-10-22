@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TitleManager : MonoBehaviour
+public class Stage1Button : MonoBehaviour
 {
     public void OnStartGameButtonClicked()
     {
-        SceneManager.LoadScene("Scenes/SelectScene"); 
+        SceneManager.LoadScene("Scenes/Main");
     }
 
     public void OnCreditsButtonClicked()
