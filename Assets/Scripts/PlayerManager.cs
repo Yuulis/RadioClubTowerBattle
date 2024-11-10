@@ -5,11 +5,15 @@ using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
+    public int playerId;
     public TextMeshProUGUI scoreText;
     public int score = -1;
     public float maxHeight = 0f;
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] public Camera playerCamera;
     [SerializeField] private float playerCameraOffset = 2.5f;
+    public FallingObjectSpawner spawner;
+    public bool isMyTurn = false;
+    public bool isMyObjFallen = false;
 
     private void Start()
     {
@@ -18,9 +22,25 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        UpDateScoreText();
+        if (isMyTurn)
+        {
+            UpDateScoreText();
+            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, maxHeight + playerCameraOffset, playerCamera.transform.position.z);
+        }
 
-        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, maxHeight + playerCameraOffset, playerCamera.transform.position.z);
+    }
+
+    public void BeginMyTurn()
+    {
+        isMyTurn = true;
+        isMyObjFallen = false;
+
+        StartCoroutine(spawner.HandleObject(0.05f));
+    }
+
+    public void EndMyTurn()
+    {
+        isMyTurn = false;
     }
 
     public void UpDateScoreText()

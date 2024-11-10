@@ -46,6 +46,7 @@ public class FallingObject : MonoBehaviour
         if ((collision.gameObject.tag == "Bar" || collision.gameObject.tag == "FallingObjects") && !falled)
         {
             falled = true;
+            playerManager.isMyObjFallen = true;
             playerManager.score++;
             playerManager.UpdateMaxHeight(this.transform.position.y);
         }
