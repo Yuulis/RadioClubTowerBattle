@@ -8,25 +8,21 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public bool isGameOver = false;
-    public int currentTurn = 0;
-    [SerializeField] PlayerManager player_1;
-    [SerializeField] PlayerManager player_2;
+    [HideInInspector] public bool isGameOver;
+    [HideInInspector] public int currentTurn;
+    [SerializeField] private List<PlayerManager> players;
 
     private void Start()
     {
-        currentTurn = 1;
+        isGameOver = false;
+        currentTurn = 0;
 
         TurnBegin();
-}
+    }
 
     private void Update()
     {
-        if (currentTurn == 1 && player_1.isMyObjFallen)
-        {
-            TurnEnd();
-        }
-        else if (currentTurn == 2 && player_2.isMyObjFallen)
+        if (players[currentTurn].isMyObjFallen)
         {
             TurnEnd();
         }
@@ -34,32 +30,15 @@ public class GameManager : MonoBehaviour
 
     private void TurnBegin()
     {
-        if (currentTurn == 1)
-        {
-            player_1.BeginMyTurn();
-        }
-        else if (currentTurn == 2)
-        {
-            player_2.BeginMyTurn();
-        }
+        players[currentTurn].BeginMyTurn();
     }
 
     private void TurnEnd()
     {
-        if (currentTurn == 1)
-        {
-            player_1.EndMyTurn();
-        }
-        else if (currentTurn == 2)
-        {
-            player_2.EndMyTurn();
-        }
+        players[currentTurn].EndMyTurn();
 
         currentTurn++;
-        if (currentTurn >= 3)
-        {
-            currentTurn = 1;
-        }
+        currentTurn %= players.Count;
 
         TurnBegin();
     }

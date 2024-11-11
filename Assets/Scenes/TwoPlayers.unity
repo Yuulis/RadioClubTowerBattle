@@ -1284,8 +1284,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameOver: 0
   currentTurn: 0
-  player_1: {fileID: 280994914}
-  player_2: {fileID: 1137989145}
+  players:
+  - {fileID: 280994914}
+  - {fileID: 1137989145}
 --- !u!1 &1743372106
 GameObject:
   m_ObjectHideFlags: 0
