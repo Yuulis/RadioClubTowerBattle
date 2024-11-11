@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 280994913}
   - component: {fileID: 280994914}
   m_Layer: 0
-  m_Name: PlayerGround
+  m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,6 +176,9 @@ MonoBehaviour:
   score: 0
   maxHeight: 0
   playerCamera: {fileID: 519420031}
+  spawner: {fileID: 1480403220}
+  isMyTurn: 0
+  isMyObjFallen: 0
   playerCameraOffset: 3
 --- !u!1 &360239420
 GameObject:
@@ -608,7 +611,6 @@ MonoBehaviour:
   movableWidth: 15
   rotateSpeed: 10
   followStrength: 0.1
-  coolTime: 1
 --- !u!1 &1607817452
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameOver: 0
+  currentTurn: 0
+  players:
+  - {fileID: 280994914}
 --- !u!1 &1745471775
 GameObject:
   m_ObjectHideFlags: 0
