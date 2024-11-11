@@ -882,6 +882,9 @@ MonoBehaviour:
   - {fileID: 2476809575869882880, guid: 8d2d788b69f5639419407fd521ba277b, type: 3}
   - {fileID: 4637620508693855904, guid: 66ad6da687220324d8c79dd3436cbcf8, type: 3}
   - {fileID: 5426860718469221057, guid: 353a8c1e074fb104d9aece79b3dd332c, type: 3}
+  - {fileID: 2685603665712393127, guid: 9587517e805f01248b1cdb22a893aba8, type: 3}
+  - {fileID: 4866705973891640205, guid: 99d6576d6bf6ab645886080f3d4fdc7c, type: 3}
+  - {fileID: 8389035840874326942, guid: e53df2f4d9d719e4c899fba864597b61, type: 3}
   movableWidth: 15
   followStrength: 0.1
   coolTime: 1
