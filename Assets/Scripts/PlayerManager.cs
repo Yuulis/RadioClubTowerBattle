@@ -9,10 +9,10 @@ public class PlayerManager : MonoBehaviour
     public int score = -1;
     public float maxHeight = 0f;
     public Camera playerCamera;
-    [SerializeField] private float playerCameraOffset = 2.5f;
     public FallingObjectSpawner spawner;
     [HideInInspector] public bool isMyTurn = false;
     [HideInInspector] public bool isMyObjFallen = false;
+    [SerializeField] private float playerCameraOffset = 2.5f;
 
     private void Start()
     {
