@@ -5,7 +5,7 @@ public class TitleManager : MonoBehaviour
 {
     public void OnStartGameButtonClicked()
     {
-        SceneManager.LoadScene("Scenes/Main"); 
+        SceneManager.LoadScene("Scenes/SelectScene"); 
     }
 
     public void OnCreditsButtonClicked()
