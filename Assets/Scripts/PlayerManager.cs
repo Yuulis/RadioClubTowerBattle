@@ -8,7 +8,10 @@ public class PlayerManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public int score = -1;
     public float maxHeight = 0f;
-    [SerializeField] private Camera playerCamera;
+    public Camera playerCamera;
+    public FallingObjectSpawner spawner;
+    [HideInInspector] public bool isMyTurn = false;
+    [HideInInspector] public bool isMyObjFallen = false;
     [SerializeField] private float playerCameraOffset = 2.5f;
 
     private void Start()
@@ -18,9 +21,28 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        UpDateScoreText();
+        if (isMyTurn)
+        {
+            UpDateScoreText();
+            playerCamera.transform.position = new Vector3(
+                playerCamera.transform.position.x, 
+                maxHeight + playerCameraOffset,
+                playerCamera.transform.position.z
+            );
+        }
+    }
 
-        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, maxHeight + playerCameraOffset, playerCamera.transform.position.z);
+    public void BeginMyTurn()
+    {
+        isMyTurn = true;
+        isMyObjFallen = false;
+
+        StartCoroutine(spawner.HandleObject(0.05f));
+    }
+
+    public void EndMyTurn()
+    {
+        isMyTurn = false;
     }
 
     public void UpDateScoreText()
