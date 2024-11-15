@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour
+public class MoveBackground : MonoBehaviour
 {
-  
         public RectTransform picture;
         private int counter = 0;
         private float move = -0.004f;
