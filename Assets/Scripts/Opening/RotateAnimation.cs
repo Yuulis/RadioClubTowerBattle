@@ -9,9 +9,8 @@ public class RotateAnimation : MonoBehaviour
         
     }
 
-    void Update()
+    private void Update()
     {
-        Transform myTransform = this.transform;
-        myTransform.Rotate(0.2f, 0f, 0.1f);
+        this.transform.Rotate(0.2f, 0f, 0.1f);
     }
 }
