@@ -8,9 +8,9 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public List<PlayerManager> players;
     [HideInInspector] public bool isGameOver;
     [HideInInspector] public int currentTurn;
-    [SerializeField] private List<PlayerManager> players;
 
     private void Start()
     {

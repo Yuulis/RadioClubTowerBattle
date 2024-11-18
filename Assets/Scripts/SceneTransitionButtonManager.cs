@@ -18,7 +18,7 @@ public enum TargetScene
 
 public class SceneTransitionButtonManager : MonoBehaviour
 {
-    public TargetScene target;
+    [HideInInspector] public TargetScene target;
     private Button button;
 
     private void Start()

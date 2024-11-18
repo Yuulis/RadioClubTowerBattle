@@ -6,7 +6,7 @@ public class FallingObjectSpawner : MonoBehaviour
 {
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private List<FallingObject> fallingObjects;
-	[SerializeField] private float spawnPointOffset = 10.0f;
+	[SerializeField] private float spawnPointOffset;
 	[SerializeField] private float movableWidth = 15.0f;
     [SerializeField] private float rotateSpeed = 10.0f;
     [SerializeField] private float followStrength = 0.1f;

@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public float maxHeight = 0f;
     [HideInInspector] public bool isMyTurn = false;
     [HideInInspector] public bool isMyObjFallen = false;
-    [SerializeField] private float playerCameraOffset = 2.5f;
+    [SerializeField] private float playerCameraOffset;
 
     private void Start()
     {
