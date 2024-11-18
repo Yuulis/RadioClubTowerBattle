@@ -8,6 +8,8 @@ public enum StageType
 {
     Solo = 1,
     Test = 2,
+    TwoPlayers = 3,
+    Collection = 4,
 }
 
 public class StageSelector : MonoBehaviour

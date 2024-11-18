@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test.unity
     guid: 4737a4a432b865347ac8c92a78fb5b56
+  - enabled: 1
+    path: Assets/Scenes/TwoPlayers.unity
+    guid: b463a6a2ae10bc74f87ec5784e115a49
+  - enabled: 1
+    path: Assets/Scenes/Collection.unity
+    guid: c790ccafcac57a84f9b69a57f2f66ae7
   m_configObjects: {}
