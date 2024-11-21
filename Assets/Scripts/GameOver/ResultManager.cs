@@ -16,6 +16,7 @@ public class ResultManager : MonoBehaviour
         if (gameMode == "Solo")
         {
             scoreText.text = $"Score: {score}";
+            winnerText.text = "";
         }
 
         else

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int score;
     [SerializeField] private Camera playersCamera;
     [SerializeField] public Transform barTransform;
-    [SerializeField] private TextMeshProUGUI turnText;
+    [SerializeField] private TextMeshProUGUI InfoText;
 
     // From spawner
     [SerializeField] private float playerCameraPosOffset = -5.0f;
@@ -38,7 +38,14 @@ public class GameManager : MonoBehaviour
 
     private void TurnBegin()
     {
-        turnText.text = $"Turn : {currentTurn + 1}P";
+        if (players.Count == 1)
+        {
+            InfoText.text = $"Score : {score}";
+        }
+        else
+        {
+            InfoText.text = $"Turn : {currentTurn + 1}P";
+        }
 
         players[currentTurn].BeginMyTurn();
     }
