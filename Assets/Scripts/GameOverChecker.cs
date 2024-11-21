@@ -20,14 +20,11 @@ public class GameOverChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "FallingObjects")
-        {
-            gameManager.isGameOver = true;
-            LoadNextScene("Scenes/GameOver");
-        }
+        gameManager.isGameOver = true;
+        LoadNextScene("Scenes/GameOver", (gameManager.currentTurn + 1) % 2);
     }
 
-    private void LoadNextScene(string scene)
+    private void LoadNextScene(string scene, int player_id)
     {
         SceneManager.sceneLoaded += GameOverSceneLoaded;
         SceneManager.LoadScene("Scenes/GameOver");
@@ -40,15 +37,15 @@ public class GameOverChecker : MonoBehaviour
             if (gameManager.players.Count == 1)
             {
                 resultManager.gameMode = "Solo";
-                resultManager.score1 = gameManager.players[0].score;
+                resultManager.score = gameManager.score;
                 retryButtonManager.target = TargetScene.Solo;
             }
             else
             {
                 resultManager.gameMode = "TwoPlayers";
-                resultManager.score1 = gameManager.players[0].score;
-                resultManager.score2 = gameManager.players[1].score;
+                resultManager.score = gameManager.score;
                 retryButtonManager.target = TargetScene.TwoPlayers;
+                resultManager.winnerId = player_id;
             }
 
             SceneManager.sceneLoaded -= GameOverSceneLoaded;

@@ -5,31 +5,28 @@ using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public Camera playerCamera;
-    public FallingObjectSpawner spawner;
-    [HideInInspector] public int score = -1;
-    [HideInInspector] public float maxHeight = 0f;
-    [HideInInspector] public bool isMyTurn = false;
-    [HideInInspector] public bool isMyObjFallen = false;
-    [SerializeField] private float playerCameraOffset;
+    public int playerId;
+    public GameManager gameManager;
+    public Camera playersCamera;
+    [HideInInspector] public FallingObjectSpawner spawner;
+    [HideInInspector] public int score;
+    [HideInInspector] public float maxHeight;
+    [HideInInspector] public bool isMyTurn;
+    [HideInInspector] public bool isMyObjFallen;
 
     private void Start()
     {
-        
+        spawner = GetComponentInChildren<FallingObjectSpawner>();
+
+        isMyTurn = false;
+        isMyObjFallen = false;
+        maxHeight = 0f;
+        score = 0;
     }
 
     private void Update()
     {
-        if (isMyTurn)
-        {
-            UpDateScoreText();
-            playerCamera.transform.position = new Vector3(
-                playerCamera.transform.position.x, 
-                maxHeight + playerCameraOffset,
-                playerCamera.transform.position.z
-            );
-        }
+        
     }
 
     public void BeginMyTurn()
@@ -43,11 +40,6 @@ public class PlayerManager : MonoBehaviour
     public void EndMyTurn()
     {
         isMyTurn = false;
-    }
-
-    public void UpDateScoreText()
-    {
-        scoreText.text = "Score : " + score.ToString();
     }
 
     public void UpdateMaxHeight(float newHeight)
