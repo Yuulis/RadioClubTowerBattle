@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using System.Collections;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int score;
     [SerializeField] private Camera playersCamera;
     [SerializeField] public Transform barTransform;
+    [SerializeField] private TextMeshProUGUI turnText;
 
     // From spawner
     [SerializeField] private float playerCameraPosOffset = -5.0f;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void TurnBegin()
     {
+        turnText.text = $"Turn : {currentTurn + 1}P";
+
         players[currentTurn].BeginMyTurn();
     }
 

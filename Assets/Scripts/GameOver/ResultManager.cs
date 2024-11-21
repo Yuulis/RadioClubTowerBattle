@@ -28,7 +28,7 @@ public class ResultManager : MonoBehaviour
             }
             else
             {
-                winnerText.text = $"Player {winnerId + 1} Won!";
+                winnerText.text = $"{winnerId + 1}P Won!";
             }
         }
     }
