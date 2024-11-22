@@ -192,6 +192,7 @@ MonoBehaviour:
   - {fileID: 5002714915807250006, guid: 6a9949ab289260641862c9500c0f5751, type: 3}
   - {fileID: 3270132259742790028, guid: 12386680861f00645a3596cafec2ef72, type: 3}
   - {fileID: 5406128386280035257, guid: 5e51dde8757997c439748eacde2ec990, type: 3}
+  - {fileID: 6536179122112367659, guid: 4fc9e6fc3b44a9041bbc31cffca3dda4, type: 3}
   spawnPointOffset: 10
   movableWidth: 15
   rotateSpeed: 10
@@ -815,6 +816,7 @@ MonoBehaviour:
   - {fileID: 5002714915807250006, guid: 6a9949ab289260641862c9500c0f5751, type: 3}
   - {fileID: 3270132259742790028, guid: 12386680861f00645a3596cafec2ef72, type: 3}
   - {fileID: 5406128386280035257, guid: 5e51dde8757997c439748eacde2ec990, type: 3}
+  - {fileID: 6536179122112367659, guid: 4fc9e6fc3b44a9041bbc31cffca3dda4, type: 3}
   spawnPointOffset: 10
   movableWidth: 15
   rotateSpeed: 5

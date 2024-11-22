@@ -11,6 +11,7 @@ public class FallingObjectSpawner : MonoBehaviour
 	[SerializeField] private float spawnPointOffset = 10.0f;
 
 	[SerializeField] private float movableWidth = 15.0f;
+    [SerializeField] private float moveSpeed = 10.0f;
     [SerializeField] private float rotateSpeed = 5.0f;
     [SerializeField] private float followStrength = 0.1f;
 	private FallingObject nextObj;
@@ -25,19 +26,32 @@ public class FallingObjectSpawner : MonoBehaviour
 	{
 		if (playerManager.isMyTurn)
 		{
-			Vector3 mousePos = playerManager.playersCamera.ScreenToWorldPoint(Input.mousePosition);
+            // Vector3 mousePos = playerManager.playersCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            this.transform.position = Vector3.Lerp(
-				this.transform.position, 
-				new Vector3(mousePos.x, playerManager.maxHeight + spawnPointOffset, this.transform.position.z), 
-				followStrength
-			);
+            /*this.transform.position = Vector3.Lerp(
+				this.transform.position,
+                new Vector3(mousePos.x, playerManager.maxHeight + spawnPointOffset, this.transform.position.z), 
+                followStrength
+			);*/
 
-            mousePos.x = Mathf.Clamp(mousePos.x, -movableWidth, movableWidth);
+            this.transform.position = new Vector3(
+                this.transform.position.x,
+                playerManager.maxHeight + spawnPointOffset,
+                this.transform.position.z
+            );
 
-			if (nextObj != null)
+            float x = Input.GetAxis("Horizontal");
+            this.transform.Translate(
+                new Vector3(x,0f,0f) * moveSpeed * Time.deltaTime
+            );
+
+            Vector3 currentPos = this.transform.position;
+            currentPos.x = Mathf.Clamp(currentPos.x, -movableWidth, movableWidth);
+            this.transform.position = currentPos;
+
+            if (nextObj != null)
 			{
-				nextObj.transform.Rotate(new Vector3(0f, 0f, Input.GetAxis("Horizontal") * rotateSpeed));
+				nextObj.transform.Rotate(new Vector3(0f, 0f, Input.GetAxis("Vertical") * rotateSpeed));
 			}
 
 			if (Input.GetMouseButtonDown(0) && nextObj != null)
