@@ -6,35 +6,30 @@ using UnityEngine;
 public class ResultManager : MonoBehaviour
 {
     [HideInInspector] public string gameMode;
-    [HideInInspector] public int score1;
-    [HideInInspector] public int score2;
-    [SerializeField] private TextMeshProUGUI score1Text;
-    [SerializeField] private TextMeshProUGUI score2Text;
+    [HideInInspector] public int score;
+    [HideInInspector] public int winnerId = -1;
+    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI winnerText;
 
     void Start()
     {
         if (gameMode == "Solo")
         {
-            score1Text.text = $"Score: {score1}";
+            scoreText.text = $"Score: {score}";
+            winnerText.text = "";
         }
 
         else
         {
-            score1Text.text = $"Player 1: {score1}";
-            score2Text.text = $"Player 2: {score2}";
+            scoreText.text = "";
 
-            if (score1 > score2)
+            if (winnerId == -1)
             {
-                winnerText.text = "Player 1 Wins!";
-            }
-            else if (score1 < score2)
-            {
-                winnerText.text = "Player 2 Wins!";
+                winnerText.text = "Draw!";
             }
             else
             {
-                winnerText.text = "Draw!";
+                winnerText.text = $"{winnerId + 1}P Won!";
             }
         }
     }

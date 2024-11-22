@@ -24,16 +24,27 @@ public class FallingObject : MonoBehaviour
 {
     public ObjectType objectType;
     private PlayerManager playerManager;
-    private bool falled = false;
+    private Rigidbody2D rb;
+    private bool touched = false;
+    private bool failed = false;
 
     void Start()
     {
-        
+        rb = this.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        
+        if (!failed)
+        {
+            if (touched && rb.IsSleeping())
+            {
+                playerManager.isMyObjFallen = true;
+                failed = true;
+                playerManager.gameManager.score++;
+                playerManager.UpdateMaxHeight(this.transform.position.y);
+            }
+        }
     }
 
     public void SetPlayerManager(PlayerManager playerManager)
@@ -43,12 +54,9 @@ public class FallingObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Bar" || collision.gameObject.tag == "FallingObjects") && !falled)
+        if ((collision.gameObject.CompareTag("Bar") || collision.gameObject.CompareTag("player-1") || collision.gameObject.CompareTag("player-2")) && !touched)
         {
-            falled = true;
-            playerManager.isMyObjFallen = true;
-            playerManager.score++;
-            playerManager.UpdateMaxHeight(this.transform.position.y);
+            touched = true;
         }
     }
 }

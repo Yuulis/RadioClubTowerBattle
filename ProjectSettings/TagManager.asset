@@ -9,6 +9,8 @@ TagManager:
   - FallingObjects
   - ResultManager
   - RetryButton
+  - player-1
+  - player-2
   layers:
   - Default
   - TransparentFX

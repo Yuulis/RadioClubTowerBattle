@@ -6,11 +6,15 @@ public class FallingObjectSpawner : MonoBehaviour
 {
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private List<FallingObject> fallingObjects;
-	[SerializeField] private float spawnPointOffset;
+
+	// From maxHight
+	[SerializeField] private float spawnPointOffset = 10.0f;
+
 	[SerializeField] private float movableWidth = 15.0f;
-    [SerializeField] private float rotateSpeed = 10.0f;
+    [SerializeField] private float rotateSpeed = 5.0f;
     [SerializeField] private float followStrength = 0.1f;
 	private FallingObject nextObj;
+	private Rigidbody2D nextObjRb;
 
     private void Start()
 	{
@@ -21,8 +25,7 @@ public class FallingObjectSpawner : MonoBehaviour
 	{
 		if (playerManager.isMyTurn)
 		{
-			Vector3 mousePos = playerManager.playerCamera.ScreenToWorldPoint(Input.mousePosition);
-			float viewPos_x = playerManager.playerCamera.WorldToViewportPoint(mousePos).x;
+			Vector3 mousePos = playerManager.playersCamera.ScreenToWorldPoint(Input.mousePosition);
 
             this.transform.position = Vector3.Lerp(
 				this.transform.position, 
@@ -39,9 +42,10 @@ public class FallingObjectSpawner : MonoBehaviour
 
 			if (Input.GetMouseButtonDown(0) && nextObj != null)
 			{
-				nextObj.GetComponent<Rigidbody2D>().isKinematic = false;
-				nextObj.transform.SetParent(null);
-				nextObj = null;
+                nextObj.GetComponent<Rigidbody2D>().isKinematic = false;
+                nextObj.transform.SetParent(null);
+                nextObj.tag = $"player-{playerManager.playerId}";
+                nextObj = null;
             }
 		}
 	}
@@ -52,7 +56,8 @@ public class FallingObjectSpawner : MonoBehaviour
 
         FallingObject obj = fallingObjects[Random.Range(0, fallingObjects.Count)];
         nextObj = Instantiate(obj, this.transform.position, Quaternion.identity);
-		nextObj.transform.SetParent(this.transform);
+        nextObjRb = nextObj.GetComponent<Rigidbody2D>();
+        nextObj.transform.SetParent(this.transform);
         nextObj.SetPlayerManager(this.playerManager);
     }
 }
