@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Transform barTransform;
     [SerializeField] private TextMeshProUGUI InfoText;
 
+
     // From spawner
     [SerializeField] private float playerCameraPosOffset = -5.0f;
 
